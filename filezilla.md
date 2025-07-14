@@ -336,6 +336,7 @@ aws ssm create-association \
 ### Option 3: Tag-Based Scheduled Patching (Toronto Timezone)
 
 ```mermaid
+
 flowchart TD
     subgraph "Toronto Timezone Scheduling"
         A[State Manager Association] --> B["Cron: 0 17 8-14 * ? SUN<br/>(12 PM EST/EDT)"]
@@ -374,6 +375,7 @@ flowchart TD
 ```
 
 #### Toronto Implementation Commands
+
 ```bash
 # Create association with Toronto timezone (12 PM EST = 5 PM UTC)
 aws ssm create-association \
