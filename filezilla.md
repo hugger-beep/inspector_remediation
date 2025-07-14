@@ -811,17 +811,6 @@ def publish_filezilla_metrics(status, duration, version):
 - **Installation Method**: Silent installation (`/S` flag)
 - **Rollback**: Manual process if verification fails
 
-### S3 Structure
-```
-patch-bucket/
-└── filezilla/
-    ├── 3.66.5/
-    │   └── FileZilla_3.66.5_win64_setup.exe
-    ├── 3.67.0/
-    │   └── FileZilla_3.67.0_win64_setup.exe
-    └── latest/
-        └── FileZilla_latest_win64_setup.exe
-```
 
 ## Best Practices
 
