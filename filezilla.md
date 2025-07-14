@@ -453,6 +453,7 @@ aws ssm describe-association-executions \
 ### Option 3: Tag-Based Scheduled Patching (Toronto Timezone)
 
 ```mermaid
+
 flowchart TD
     subgraph "Toronto Timezone Scheduling"
         A[State Manager Association] --> B["Cron: 0 17 8-14 * ? SUN<br/>(12 PM EST/EDT)"]
@@ -488,6 +489,7 @@ flowchart TD
     style C fill:#4ecdc4,stroke:#333,stroke-width:2px
     style H fill:#f5a623,stroke:#333,stroke-width:2px
     style N fill:#95a5a6,stroke:#333,stroke-width:2px
+
 ```
           Write-Output "Installing FileZilla {{ fileZillaVersion }}..."
           $installer = "C:\temp\FileZilla_{{ fileZillaVersion }}_win64_setup.exe"
