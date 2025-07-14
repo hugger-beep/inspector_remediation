@@ -508,7 +508,6 @@ flowchart TD
           # Cleanup
           Remove-Item $installer -Force
           Write-Output "FileZilla updated successfully - Installation complete"
-```
 
 ##### Direct Download Scheduled Patching (Step 2 Implementation)
 **Note**: This uses the SSM Document from Step 2 above - no Lambda required
