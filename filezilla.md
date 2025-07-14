@@ -450,64 +450,7 @@ aws ssm describe-association-executions \
           Write-Output "FileZilla patching completed successfully"
 ```
 
-### Option 3: Tag-Based Scheduled Patching (Toronto Timezone)
 
-```mermaid
-
-flowchart TD
-    subgraph "Toronto Timezone Scheduling"
-        A[State Manager Association] --> B["Cron: 0 17 8-14 * ? SUN<br/>(12 PM EST/EDT)"]
-        B --> C[Target Selection by Tags]
-    end
-    
-    subgraph "Tag-Based Targeting"
-        C --> D["Environment: UAT"]
-        C --> E["Application: FileZilla"]
-        C --> F["PatchGroup: Sunday"]
-        C --> G["Region: Toronto"]
-    end
-    
-    subgraph "Execution Flow"
-        D --> H[SSM Document Execution]
-        E --> H
-        F --> H
-        G --> H
-        H --> I[Pre-patch Validation]
-        I --> J[FileZilla Download]
-        J --> K[Silent Installation]
-        K --> L[Post-patch Verification]
-        L --> M[Compliance Reporting]
-    end
-    
-    subgraph "Toronto-Specific Features"
-        M --> N["CloudWatch Logs<br/>(America/Toronto)"]
-        M --> O["SNS Notifications<br/>(EST/EDT Timestamps)"]
-        M --> P["Maintenance Window<br/>(Toronto Business Hours)"]
-    end
-    
-    style B fill:#ff6b6b,stroke:#333,stroke-width:2px
-    style C fill:#4ecdc4,stroke:#333,stroke-width:2px
-    style H fill:#f5a623,stroke:#333,stroke-width:2px
-    style N fill:#95a5a6,stroke:#333,stroke-width:2px
-
-```
-          Write-Output "Installing FileZilla {{ fileZillaVersion }}..."
-          $installer = "C:\temp\FileZilla_{{ fileZillaVersion }}_win64_setup.exe"
-          Start-Process -FilePath $installer -ArgumentList "/S" -Wait
-          
-          # Verify installation
-          Start-Sleep -Seconds 10
-          $version = (Get-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\FileZilla Client" -ErrorAction SilentlyContinue).DisplayVersion
-          if ($version) {
-              Write-Output "FileZilla $version installed successfully"
-          } else {
-              Write-Error "FileZilla installation verification failed"
-              exit 1
-          }
-          
-          # Cleanup
-          Remove-Item $installer -Force
-          Write-Output "FileZilla updated successfully - Installation complete"
 
 ##### Direct Download Scheduled Patching (Step 2 Implementation)
 **Note**: This uses the SSM Document from Step 2 above - no Lambda required
